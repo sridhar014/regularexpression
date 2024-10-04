@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .form{
+            display: block;
+            flex-direction: row;
+            width:50vw;
+            gap:10px;
+
+        }
+    </style>
+</head>
+<body>
+    <form id="form1">
+        <label>e-mail:</label>
+        <input type="text" id="ip1"><br><br>
+        
+        <span id="sp1" style="display: none;">*must fill this feild</span>
+        <span id="spu" style="display: none;">*It must contain given criteria @gmail.com  </span>
+    
+        <label>password:</label>
+        <input type="text" id="ip2"><br><br>
+        <span id="spp" style="display: none;">*It should contain at least one lowercase letter, one uppercase letter, one digit, and one special character and at least 8 characters long. </span>
+        <span id="sp2" style="display: none;">*must fill this feild</span>
+        <input type="submit" style="width:100px;">
+      
+
+    </form>
+    <script>
+        let form=document.getElementById("form1")
+        let ip1=document.getElementById("ip1")
+        let ip2=document.getElementById("ip2")
+        let sp1=document.getElementById("sp1")
+        let sp2=document.getElementById("sp2")
+        // let onlyAlphabets=/^(?=.[a-z])(?=.[A-Z])(?=.[0-9])(?=.[@$%&*!])/;
+        let email=/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+        let pswd=/^(?=.[a-z])(?=.[A-Z])(?=.[0-9])(?=.[@$%&*!])/
+        form.addEventListener("submit",(e)=>{
+            e.preventDefault();
+
+            if(ip1.value.length==0){
+                sp1.style.display="block";
+                sp2.style.display="block";
+                sp1.style.display="red";
+                sp2.style.display="red";
+                ip1.style.border="2px solid red";
+                ip2.style.border="2px solid red";
+            }
+            else if(ip1.value.length==0){
+                sp1.style.display="block";
+                sp1.style.color="2px solid red";
+            }
+            else if(!email.test(ip1.value)){
+                spu.style.display="block";
+                spu.style.color="red"
+                ip1.style.color="2px solid red";
+
+            }
+            else if(ip2.value.length==0){
+                sp2.style.display="block";
+                sp2.style.color="red"
+                sp2.style.color="2px solid red";
+            }
+            else if(!pswd.test(ip2.value)){
+                spp.style.display="block";
+                spp.style.color="red"
+                sp2.style.color="2px solid red";
+                
+            }
+        })
+    </script>
+</body>
+</html>
